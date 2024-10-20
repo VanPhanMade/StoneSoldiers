@@ -13,5 +13,11 @@ UCLASS()
 class STONESOLDIERS_API AStoneSoldiersGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public: 
+ 
+protected: 
+ 
+private:
 	
 };

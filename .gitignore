@@ -51,6 +51,8 @@ Binaries/
 Plugins/**/Binaries/*
 Plugins/**/Binaries/
 
+.vscode/
+
 # Builds
 Build/*
 Build/

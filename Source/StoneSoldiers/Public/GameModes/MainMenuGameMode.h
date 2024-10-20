@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "MainMenuGameMode.generated.h"
 
+
+class UMainMenu;
 /**
  * 
  */
@@ -21,6 +23,6 @@ protected:
  
 private:
 	UPROPERTY(EditAnywhere, Category="UI", meta=(AllowPrivateAccess="true"))
-	TSubclassOf<class UMainMenu> MainMenuWidget;
+	TSubclassOf<UMainMenu> MainMenuWidget;
 
 };
