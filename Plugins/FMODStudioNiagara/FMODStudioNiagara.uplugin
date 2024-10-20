@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 20222,
+	"VersionName": "2.02.22",
+	"FriendlyName": "FMOD Studio Niagara Integration",
+	"Description": "FMOD Studio with Niagara Integration.",
+	"Category": "Audio",
+	"CreatedBy": "Firelight Technologies",
+	"CreatedByURL": "http://fmod.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.4.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "FMODStudioNiagara",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "FMODStudio",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		}
+	]
+}
