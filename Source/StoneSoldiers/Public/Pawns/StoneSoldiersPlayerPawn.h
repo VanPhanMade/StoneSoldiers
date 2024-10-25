@@ -45,4 +45,26 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* OpenMenuAction;
 
+	// Scroll wheel
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* ZoomAction;
+
+	// Components
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(AllowPrivateAccess="true"))
+	class USpringArmComponent* SpringArm;
+
+	UPROPERTY(EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* CameraComponent;
+
+	// Input callbacks
+	void PrimaryActionCall();
+	void SecondaryActionCall();
+	void ForwardActionCall();
+	void LeftActionCall();
+	void RightActionCall();
+	void BackActionCall();
+	void ScreenMovementActionCall(const struct FInputActionValue& Value);
+	void OpenMenuActionCall();
+	void ZoomActionCall(const struct FInputActionValue& Value);
+
 };
