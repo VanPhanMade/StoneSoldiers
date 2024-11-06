@@ -13,5 +13,11 @@ UCLASS()
 class STONESOLDIERS_API AStoneSoldiersGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
+public:
+
+protected:
+	virtual void PostLogin(APlayerController* NewPlayer) override;
+private:
+
 	
 };
