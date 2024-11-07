@@ -30,14 +30,32 @@ private:
 	class UButton* PlayButton;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UButton* EditTeamButton;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SettingsButton;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* ExitButton;
 
+	// Team Editor UI Elements
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UButton* TeamEditorBackToMenuButton;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UHorizontalBox* ArcheryRow;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UHorizontalBox* FootmenRow;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UHorizontalBox* CavalryRow;
+
 	// Game Sessions UI Elements
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SessionsBackToMenuButton;
+
+	
 
 	// Settings UI Elements
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
@@ -46,6 +64,9 @@ private:
 
 	UFUNCTION()
 	void GoToPlayOptions();
+
+	UFUNCTION()
+	void GoToTeamEditor();
 	
 	UFUNCTION()
 	void GoToSettings();
