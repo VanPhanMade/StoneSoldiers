@@ -17,20 +17,20 @@ class STONESOLDIERS_API UMainMenu : public UUserWidget
 public: 
 	UFUNCTION()
 	void GoToMainMenu();
+
+	UPROPERTY( meta = (BindWidget))
+	class UWidgetSwitcher* WidgetSwitcher;
  
 protected: 
 	virtual bool Initialize() override;
 
 private:
 	// Main Menu UI Elements
-	UPROPERTY( meta = (BindWidget))
-	class UWidgetSwitcher* WidgetSwitcher;
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UButton* CampaignButton;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UButton* PlayButton;
-
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UButton* EditTeamButton;
+	class UButton* BattlesButton;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SettingsButton;
@@ -38,35 +38,25 @@ private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* ExitButton;
 
-	// Team Editor UI Elements
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UButton* TeamEditorBackToMenuButton;
-
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UHorizontalBox* ArcheryRow;
-
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UHorizontalBox* FootmenRow;
-
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UHorizontalBox* CavalryRow;
-
 	// Game Sessions UI Elements
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SessionsBackToMenuButton;
-
-	
 
 	// Settings UI Elements
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SettingsBackToMenuButton;
 
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UBattlesOptions* BattleOptions;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UCampaignOptions* CampaignOptions;
 
 	UFUNCTION()
-	void GoToPlayOptions();
+	void OpenCampaignOptions();
 
 	UFUNCTION()
-	void GoToTeamEditor();
+	void OpenBattlesOptions();
 	
 	UFUNCTION()
 	void GoToSettings();
