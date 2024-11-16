@@ -16,7 +16,6 @@ void AStoneSoldiersPlayerController::BeginPlay()
             {
                 InGameHUDRef->AddToViewport();
                 InGameHUDRef->SetIsFocusable(false); // Prevents widget from capturing focus
-                InGameHUDRef->bIsFocusable = false;  // Stops the UI from taking focus from the game
             }
         }
         
