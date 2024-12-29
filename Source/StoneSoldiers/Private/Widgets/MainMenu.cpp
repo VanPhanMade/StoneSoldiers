@@ -7,19 +7,18 @@
 #include "Components/Button.h"
 #include "Widgets/CampaignOptions.h"
 #include "Widgets/BattlesOptions.h"
+#include "Widgets/Components/MultiplayerSessionsUI.h"
 
 bool UMainMenu::Initialize()
 {
     if(!Super::Initialize()) return false;
 
-    if(CampaignButton && BattlesButton && SettingsButton && ExitButton && SessionsBackToMenuButton && SettingsBackToMenuButton)
+    if(CampaignButton && BattlesButton && SettingsButton && ExitButton && SettingsBackToMenuButton)
     {
         CampaignButton->OnClicked.AddDynamic(this, &ThisClass::OpenCampaignOptions);
         BattlesButton->OnClicked.AddDynamic(this, &ThisClass::OpenBattlesOptions);
         SettingsButton->OnClicked.AddDynamic(this, &ThisClass::GoToSettings);
         ExitButton->OnClicked.AddDynamic(this, &ThisClass::ExitGame);
-        SessionsBackToMenuButton->OnClicked.AddDynamic(this, &ThisClass::GoToMainMenu);
-        SettingsBackToMenuButton->OnClicked.AddDynamic(this, &ThisClass::GoToMainMenu);
     }
 
     if(BattleOptions)
@@ -29,6 +28,11 @@ bool UMainMenu::Initialize()
     if(CampaignOptions)
     {
         CampaignOptions->MainMenuWidget = this;
+    }
+
+    if(MultiplayerSessionsUI)
+    {
+        MultiplayerSessionsUI->OnBackButtonClicked.AddDynamic(this, &ThisClass::GoToMainMenu);
     }
 
     return true;
