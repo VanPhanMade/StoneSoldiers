@@ -402,7 +402,10 @@ AudioMixerModuleName=
 
 <p>To see what directories the .so files can be located, look at LinuxToolChain.cs. Currently there are only a set of hard coded directories that are supported.</p>
 <h2 id="macos"><a href="#macos">8.6 macOS</a></h2>
-<p>To make a packaged build runnable on your local machine, execute the following command from the command shell :</p>
+<div class="admonition warning">
+<p>This has been solved in UE 4.27 and above, the following is only required if you are using an older version of Unreal.</p>
+</div>
+<p>To make a packaged build runnable on your local machine, execute the following command from the command shell:</p>
 <div class="highlight language-text"><pre><span></span>install_name_tool -add_rpath @executable_path/../Unreal/YourGame/Plugins/FMODStudio/Libs/Mac /Path/To/YourGame.app/Contents/MacOS/YourGame
 </pre></div>
 
@@ -566,7 +569,7 @@ EnvironmentVariables.Add(&quot;_NT_SYMBOL_PATH&quot;, SymbolPath);
 <p>Then, on your build machine you need to set the value of <code>_NT_SYMBOL_PATH</code> to where the FMOD PDBs will be.<br />
 Eg. "[MyGame]\Plugins\FMODStudio\Binaries\XBoxOne" or "[MyGame]\Platforms\XboxOne\Plugins\FMODStudio\Binaries".</p></div>
 
-<p class="manual-footer">Unreal Integration 2.02.22 (2024-05-05). &copy; 2024 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">Unreal Integration 2.02.26 (2024-12-11). &copy; 2024 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 
