@@ -284,26 +284,39 @@ public:
     /** Actual Studio instance handle. */
     FMOD::Studio::EventInstance *StudioInstance;
 
-// Begin UObject interface.
+    // Begin UObject interface.
 #if WITH_EDITOR
     virtual void PostEditChangeProperty(FPropertyChangedEvent &e) override;
 #endif // WITH_EDITOR
     virtual void PostLoad() override;
-// End UObject interface.
+    // End UObject interface.
 
-// Begin USceneComponent Interface
+    // Begin USceneComponent Interface
     virtual void Activate(bool bReset = false) override;
     virtual void Deactivate() override;
-// End USceneComponent Interface
+    /** Called when a component is registered, after Scene is set, but before CreateRenderState_Concurrent or OnCreatePhysicsState are called. */
+    virtual void OnRegister() override;
+    /** Called when a component is unregistered. Called after DestroyRenderState_Concurrent and OnDestroyPhysicsState are called. */
+    virtual void OnUnregister() override;
+    // End USceneComponent Interface
+
+    // Begin ActorComponent interface.
+    /** Overridable native event for when play begins for this actor. */
+    virtual void BeginPlay() override;
+    /** Overridable function called whenever this actor is being removed from a level. */
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+    /** Function called every frame on this ActorComponent. Only executes if the component is registered, and also PrimaryComponentTick.bCanEverTick must be set to true. */
+    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+    // End ActorComponent interface.
 
 protected:
-// Begin UObject interface.
+    // Begin UObject interface.
     virtual void OnUpdateTransform(EUpdateTransformFlags UpdateTransformFlags, ETeleportType Teleport = ETeleportType::None) override;
-// End UObject interface.
+    // End UObject interface.
 
-// Begin USceneComponent Interface
+    // Begin USceneComponent Interface
     virtual FString GetDetailedInfoInternal() const override;
-// End USceneComponent Interface
+    // End USceneComponent Interface
 
 private:
     bool bDefaultParameterValuesCached;
@@ -364,23 +377,6 @@ private:
 
     void EventCallbackSoundStopped();
     bool TriggerSoundStoppedDelegate;
-
-// Begin ActorComponent interface.
-    /** Called when a component is registered, after Scene is set, but before CreateRenderState_Concurrent or OnCreatePhysicsState are called. */
-    virtual void OnRegister() override;
-
-    /** Called when a component is unregistered. Called after DestroyRenderState_Concurrent and OnDestroyPhysicsState are called. */
-    virtual void OnUnregister() override;
-
-    /** Overridable native event for when play begins for this actor. */
-    virtual void BeginPlay() override;
-
-    /** Overridable function called whenever this actor is being removed from a level. */
-    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
-    /** Function called every frame on this ActorComponent. Only executes if the component is registered, and also PrimaryComponentTick.bCanEverTick must be set to true. */
-    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
-// End ActorComponent interface.
 
 #if WITH_EDITORONLY_DATA
     void UpdateSpriteTexture();
@@ -456,4 +452,7 @@ private:
 
     /** To prevent restarting by delayed state restore from sequencer. */
     bool bPlayEnded;
+
+    FVector Velocity;
+    FVector LastLocation;
 };

@@ -36,11 +36,12 @@
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_event" title="The event asset to use for this sound.">UFMODAudioComponent::Event</a> The event asset to use for this sound.</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_eventcallback" title="Generic callback used for the Studio Instance.">UFMODAudioComponent_EventCallback</a> Generic callback used for the Studio Instance.</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_occlusiondetails" title="FMOD Custom Occlusion Details.">UFMODAudioComponent::OcclusionDetails</a> FMOD Custom Occlusion Details.</span></li>
+<li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_oneventstopped" title="Called when an event stops, either because it played to completion or because a Stop() call turned it off early.">UFMODAudioComponent::OnEventStopped</a> Called when an event stops, either because it played to completion or because a Stop() call turned it off early.</span></li>
+<li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_onsoundstopped" title="Called when a sound stops.">UFMODAudioComponent::OnSoundStopped</a> Called when a sound stops.</span></li>
+<li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_ontimelinebeat" title="Called when we reach a beat of a tempo (if bEnableTimelineCallbacks is true).">UFMODAudioComponent::OnTimelineBeat</a> Called when we reach a beat of a tempo (if bEnableTimelineCallbacks is true).</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_ontimelinemarker" title="Called when we reach a named marker (if bEnableTimelineCallbacks is true).">UFMODAudioComponent::OnTimelineMarker</a> Called when we reach a named marker (if bEnableTimelineCallbacks is true).</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_parametercache" title="Cache of the current Events parameters.">UFMODAudioComponent::ParameterCache</a> Cache of the current Events parameters.</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_programmersoundname" title="Sound name used for programmer sound.">UFMODAudioComponent::ProgrammerSoundName</a> Sound name used for programmer sound.</span></li>
-<li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_oneventstopped" title="Called when an event stops, either because it played to completion or because a Stop() call turned it off early.">UFMODAudioComponent::OnEventStopped</a> Called when an event stops, either because it played to completion or because a Stop() call turned it off early.</span></li>
-<li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_ontimelinebeat" title="Called when we reach a beat of a tempo (if bEnableTimelineCallbacks is true).">UFMODAudioComponent::OnTimelineBeat</a> Called when we reach a beat of a tempo (if bEnableTimelineCallbacks is true).</span></li>
 <li><span><a class="apilink" href="api-reference-ufmodaudiocomponent.html#ufmodaudiocomponent_studioinstance" title="Actual Studio instance handle.">UFMODAudioComponent::StudioInstance</a> Actual Studio instance handle.</span></li>
 </ul>
 <p><strong>Methods:</strong></p>
@@ -52,6 +53,7 @@
 <li><span><a class="apilink" href="blueprint-reference-component.html#get-length" title="Get the event length in milliseconds.">Get Length</a> Get the event length in milliseconds.</span></li>
 <li><span><a class="apilink" href="blueprint-reference-component.html#get-parameter" title="Get parameter value from the Event.">Get Parameter</a> Get parameter value from the Event.</span></li>
 <li><span><a class="apilink" href="blueprint-reference-component.html#get-parameter-value" title="Get parameter value from the Event.">Get Parameter Value</a> Get parameter value from the Event.</span></li>
+<li><span><a class="apilink" href="blueprint-reference-component.html#get-paused" title="Get the paused state of the audio component.">Get Paused</a> Get the paused state of the audio component.</span></li>
 <li><span><a class="apilink" href="blueprint-reference-component.html#get-property" title="Get a property of the Event.">Get Property</a> Get a property of the Event.</span></li>
 <li><span><a class="apilink" href="blueprint-reference-component.html#get-timeline-position" title="Get the timeline position in milliseconds.">Get Timeline Position</a> Get the timeline position in milliseconds.</span></li>
 <li><span><a class="apilink" href="blueprint-reference-component.html#is-playing" title="Return true if this component is currently playing an event.">Is Playing</a> Return true if this component is currently playing an event.</span></li>
@@ -186,6 +188,16 @@
 <div class="highlight language-cpp"><pre><span></span><span class="n">FOnEventStopped</span> <span class="n">OnEventStopped</span><span class="p">;</span>
 </pre></div>
 
+<h2 api="struct" id="ufmodaudiocomponent_onsoundstopped"><a href="#ufmodaudiocomponent_onsoundstopped">UFMODAudioComponent::OnSoundStopped</a></h2>
+<p>Called when a sound stops.</p>
+<p>
+<div class="language-selector">
+<div class="language-tab" data-language="language-cpp">C++</div>
+</div>
+</p>
+<div class="highlight language-cpp"><pre><span></span><span class="n">FOnSoundStopped</span> <span class="n">OnSoundStopped</span><span class="p">;</span>
+</pre></div>
+
 <h2 api="struct" id="ufmodaudiocomponent_ontimelinebeat"><a href="#ufmodaudiocomponent_ontimelinebeat">UFMODAudioComponent::OnTimelineBeat</a></h2>
 <p>Called when we reach a beat of a tempo (if bEnableTimelineCallbacks is true).</p>
 <p>
@@ -256,7 +268,7 @@
 <div class="highlight language-cpp"><pre><span></span><span class="n">FMOD</span><span class="o">::</span><span class="n">Studio</span><span class="o">::</span><span class="n">EventInstance</span> <span class="o">*</span><span class="n">StudioInstance</span><span class="p">;</span>
 </pre></div></div>
 
-<p class="manual-footer">Unreal Integration 2.02.22 (2024-05-05). &copy; 2024 Firelight Technologies Pty Ltd.</p>
+<p class="manual-footer">Unreal Integration 2.02.26 (2024-12-11). &copy; 2024 Firelight Technologies Pty Ltd.</p>
 </body>
 </html>
 
