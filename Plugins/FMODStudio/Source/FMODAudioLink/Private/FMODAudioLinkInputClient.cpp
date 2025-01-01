@@ -70,7 +70,7 @@ void FFMODAudioLinkInputClient::Register(const FName& NameOfProducingSource)
             return;
         }
         UE_CLOG(UNLIKELY(AudioDevice->GetMaxChannels() == 0), LogFMODAudioLink, Warning,
-            TEXT("FMODAudioLink: The current AudioDevice %" PRIu32 " has 0 MaxChannels. Consider setting AudioMaxChannels to a sensible value in the Engine config file's TargetSettings for your platform."),
+            TEXT("FMODAudioLink: The current AudioDevice %d has 0 MaxChannels. Consider setting AudioMaxChannels to a sensible value in the Engine config file's TargetSettings for your platform."),
             AudioDevice->DeviceID);
 
         UE_CLOG(!FFMODAudioLinkFactory::bHasSubmix,
@@ -144,7 +144,7 @@ FMOD_RESULT F_CALLBACK SoundCallback(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_
         // Pass the sound to FMOD
         FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES* props = (FMOD_STUDIO_PROGRAMMER_SOUND_PROPERTIES*)parameters;
         props->sound = (FMOD_SOUND*)sound;
-        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Sound Created: %s , Consumer = %" PRIu64 "."), *sourceName, ConsumerPtr);
+        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Sound Created: %s , Consumer = %p."), *sourceName, ConsumerPtr);
     }
     else if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROY_PROGRAMMER_SOUND)
     {
@@ -153,7 +153,7 @@ FMOD_RESULT F_CALLBACK SoundCallback(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_
         FMOD::Sound* sound = (FMOD::Sound*)props->sound;
 
         // Release the sound
-        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Sound Release: %" PRIu64 "."), sound);
+        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Sound Release: %p."), sound);
         result = sound->release();
     }
     else if (type == FMOD_STUDIO_EVENT_CALLBACK_DESTROYED)
@@ -161,7 +161,7 @@ FMOD_RESULT F_CALLBACK SoundCallback(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_
         InputClientRef* ClientRef = nullptr;
         result = eventInstance->getUserData((void**)&ClientRef);
 
-        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Event Destroyed: ClientRef = %" PRIu64 "."), ClientRef);
+        UE_LOG(LogFMODAudioLink, Verbose, TEXT("Event Destroyed: ClientRef = %p."), ClientRef);
         if (ClientRef)
         {
             delete ClientRef;
@@ -182,7 +182,7 @@ void FFMODAudioLinkInputClient::Start(USceneComponent* InComponent)
     auto SelfSP = AsShared();
     auto PlayLambda = [SelfSP, LinkEvent, InComponent]()
         {
-            UE_LOG(LogFMODAudioLink, Verbose, TEXT("FFMODAudioLinkInputClient::Start: SelSP = %" PRIu64 ", LinkEvent = %s, InComponent = %" PRIu64 ".")
+            UE_LOG(LogFMODAudioLink, Verbose, TEXT("FFMODAudioLinkInputClient::Start: SelfSP = %p, LinkEvent = %s, InComponent = %p.")
                     , &SelfSP, *LinkEvent.Get()->GetName(), &InComponent);
 
             FMOD::Studio::EventDescription* EventDesc = IFMODStudioModule::Get().GetEventDescription(LinkEvent.Get());

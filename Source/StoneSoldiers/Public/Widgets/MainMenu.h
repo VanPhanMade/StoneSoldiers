@@ -15,7 +15,7 @@ class STONESOLDIERS_API UMainMenu : public UUserWidget
 	GENERATED_BODY()
 
 public: 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void GoToMainMenu();
 
 	UPROPERTY( meta = (BindWidget))
@@ -38,10 +38,6 @@ private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* ExitButton;
 
-	// Game Sessions UI Elements
-	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
-	class UButton* SessionsBackToMenuButton;
-
 	// Settings UI Elements
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UButton* SettingsBackToMenuButton;
@@ -51,6 +47,9 @@ private:
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UCampaignOptions* CampaignOptions;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UMultiplayerSessionsUI* MultiplayerSessionsUI;
 
 	UFUNCTION()
 	void OpenCampaignOptions();
