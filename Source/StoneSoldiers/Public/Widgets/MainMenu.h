@@ -18,6 +18,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GoToMainMenu();
 
+	UFUNCTION()
+	void GoToLoadCampaigns();
+
 	UPROPERTY( meta = (BindWidget))
 	class UWidgetSwitcher* WidgetSwitcher;
  
@@ -51,6 +54,15 @@ private:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
 	class UMultiplayerSessionsUI* MultiplayerSessionsUI;
 
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class ULoadCampaignOptions* LoadCampaignOptions;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class ULeaderboardUI* LeaderboardUI;
+
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget, AllowPrivateAccess="true"))
+	class UReplaysUI* ReplaysUI;
+
 	UFUNCTION()
 	void OpenCampaignOptions();
 
@@ -59,6 +71,14 @@ private:
 	
 	UFUNCTION()
 	void GoToSettings();
+
+	UFUNCTION()
+	void GoToReplays();
+
+	UFUNCTION()
+	void GoToLeaderboards();
+
+	
 
 	UFUNCTION()
 	void ExitGame();
