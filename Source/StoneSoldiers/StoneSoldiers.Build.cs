@@ -26,10 +26,12 @@ public class StoneSoldiers : ModuleRules
             "OnlineSubsystemSteam"
         });
 
-        PrivateDependencyModuleNames.AddRange(new string[] { });
-
-        // Uncomment if you are using Slate UI
-        PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "Slate",
+            "SlateCore",
+            "OnlineSubsystem",
+            "OnlineSubsystemUtils" // Add this here
+        });
 
         // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file 
         // with the Enabled attribute set to true.

@@ -8,6 +8,9 @@
 #include "Widgets/CampaignOptions.h"
 #include "Widgets/BattlesOptions.h"
 #include "Widgets/Components/MultiplayerSessionsUI.h"
+#include "Widgets/Components/LoadCampaignOptions.h"
+#include "Widgets/Components/LeaderboardUI.h"
+#include "Widgets/Components/ReplaysUI.h"
 
 bool UMainMenu::Initialize()
 {
@@ -33,6 +36,21 @@ bool UMainMenu::Initialize()
     if(MultiplayerSessionsUI)
     {
         MultiplayerSessionsUI->OnBackButtonClicked.AddDynamic(this, &ThisClass::GoToMainMenu);
+    }
+
+    if(LoadCampaignOptions)
+    {
+        LoadCampaignOptions->OnBackButtonClickedLoadCampaignOptions.AddDynamic(this, &ThisClass::GoToMainMenu);
+    }
+
+    if(ReplaysUI)
+    {
+        ReplaysUI->OnBackButtonClickedReplays.AddDynamic(this, &ThisClass::GoToMainMenu);
+    }
+
+    if(LeaderboardUI)
+    {
+        LeaderboardUI->OnBackButtonClickedLeaderboard.AddDynamic(this, &ThisClass::GoToMainMenu);
     }
 
     return true;
@@ -68,7 +86,31 @@ void UMainMenu::GoToSettings()
         CampaignOptions->SetVisibility(ESlateVisibility::Collapsed);
         BattleOptions->SetVisibility(ESlateVisibility::Collapsed);
     }
-    if(WidgetSwitcher) WidgetSwitcher->SetActiveWidgetIndex(3);
+    if(WidgetSwitcher) WidgetSwitcher->SetActiveWidgetIndex(2);
+}
+
+void UMainMenu::GoToReplays()
+{
+    if(ReplaysUI)
+    {
+        if(WidgetSwitcher) WidgetSwitcher->SetActiveWidgetIndex(4);
+    }
+}
+
+void UMainMenu::GoToLeaderboards()
+{
+    if(LeaderboardUI)
+    {
+        if(WidgetSwitcher) WidgetSwitcher->SetActiveWidgetIndex(3);
+    }
+}
+
+void UMainMenu::GoToLoadCampaigns()
+{
+    if(LoadCampaignOptions)
+    {
+        if(WidgetSwitcher) WidgetSwitcher->SetActiveWidgetIndex(5);
+    }
 }
 
 void UMainMenu::ExitGame()
