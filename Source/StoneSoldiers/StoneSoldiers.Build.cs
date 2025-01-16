@@ -30,7 +30,8 @@ public class StoneSoldiers : ModuleRules
             "Slate",
             "SlateCore",
             "OnlineSubsystem",
-            "OnlineSubsystemUtils" // Add this here
+            "OnlineSubsystemUtils",
+            "Json"// Add this here
         });
 
         // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file 
