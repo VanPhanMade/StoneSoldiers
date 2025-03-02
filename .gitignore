@@ -81,3 +81,11 @@ Plugins/**/Intermediate/
 # Cache files for the editor to use
 DerivedDataCache/*
 .vscode.zip
+
+# JetBrains Rider
+.idea/
+*.iml
+out/
+*.ipr
+*.iws
+*.sln.DotSettings.user
