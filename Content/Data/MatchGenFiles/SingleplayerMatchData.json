@@ -1,5 +1,66 @@
 {
-	"LevelName": "RiverMap",
-	"Difficulty": 3,
-	"IsNightMode": false
+	"MapRules":
+	{
+		"LevelName": "RiverMap",
+		"GameMode": "Conquest",
+		"Difficulty": 3,
+		"IsNightMode": false
+	},
+	"MatchSettings":
+	{
+		"MaxPlayers": 8,
+		"AllowRespawns": false
+	},
+	"Players": [
+		{
+			"ID": 1,
+			"Faction": "Faction1",
+			"StoneCasters": [
+				{
+					"Name": "StoneCaster1",
+					"Golems": [
+						"Golem1",
+						"Golem2"
+					]
+				},
+				{
+					"Name": "StoneCaster2",
+					"Golems": [
+						"Golem1"
+					]
+				}
+			],
+			"AuxiliaryUnits": [
+				"AuxUnit1",
+				"AuxUnit2",
+				"AuxUnit3"
+			]
+		},
+		{
+			"ID": 2,
+			"Faction": "Faction2",
+			"StoneCasters": [
+				{
+					"Name": "StoneCaster1",
+					"Golems": [
+						"Golem1",
+						"Golem2",
+						"Golem3"
+					]
+				},
+				{
+					"Name": "StoneCaster2",
+					"Golems": [
+						"Golem1",
+						"Golem2",
+						"Golem3"
+					]
+				}
+			],
+			"AuxiliaryUnits": [
+				"AuxUnit1",
+				"AuxUnit2"
+			]
+		}
+	]
 }
