@@ -13,25 +13,6 @@
 	},
 	"Players": [
 		{
-			"ID": 3,
-			"Faction": "ForestFaction",
-			"StoneCasters": [
-				{
-					"Name": "StoneCaster1",
-					"Golems": [
-						"Golem1"
-					]
-				},
-				{
-					"Name": "StoneCaster2",
-					"Golems": [
-						"Golem1"
-					]
-				}
-			],
-			"AuxiliaryUnits": []
-		},
-		{
 			"ID": 4,
 			"Faction": "DesertFaction",
 			"StoneCasters": [
@@ -62,34 +43,6 @@
 					"Golems": [
 						"Golem1",
 						"Golem2",
-						"Golem3",
-						"Golem4"
-					]
-				},
-				{
-					"Name": "StoneCaster2",
-					"Golems": [
-						"Golem1",
-						"Golem2",
-						"Golem3",
-						"Golem4"
-					]
-				}
-			],
-			"AuxiliaryUnits": [
-				"AuxUnit1",
-				"AuxUnit2"
-			]
-		},
-		{
-			"ID": 6,
-			"Faction": "ForestFaction",
-			"StoneCasters": [
-				{
-					"Name": "StoneCaster1",
-					"Golems": [
-						"Golem1",
-						"Golem2",
 						"Golem3"
 					]
 				},
@@ -102,7 +55,8 @@
 			],
 			"AuxiliaryUnits": [
 				"AuxUnit1",
-				"AuxUnit2"
+				"AuxUnit2",
+				"AuxUnit3"
 			]
 		}
 	]
