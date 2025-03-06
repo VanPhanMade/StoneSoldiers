@@ -1,0 +1,37 @@
+{
+	"MapRules":
+	{
+		"LevelName": "RiverMap",
+		"GameMode": "Conquest",
+		"Difficulty": 3,
+		"IsNightMode": false
+	},
+	"MatchSettings":
+	{
+		"MaxPlayers": 8,
+		"AllowRespawns": false
+	},
+	"Players": [
+		{
+			"ID": 4,
+			"Faction": "DesertFaction",
+			"StoneCasters": [
+				{
+					"Name": "StoneCaster1",
+					"Golems": [
+						"Golem1",
+						"Golem2",
+						"Golem3"
+					]
+				},
+				{
+					"Name": "StoneCaster2",
+					"Golems": [
+						"Golem1"
+					]
+				}
+			],
+			"AuxiliaryUnits": []
+		}
+	]
+}
