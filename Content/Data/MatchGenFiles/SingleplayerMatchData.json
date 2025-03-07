@@ -19,9 +19,31 @@
 				{
 					"Name": "StoneCaster1",
 					"Golems": [
+						"Golem1"
+					]
+				},
+				{
+					"Name": "StoneCaster2",
+					"Golems": [
 						"Golem1",
 						"Golem2",
-						"Golem3"
+						"Golem3",
+						"Golem4"
+					]
+				}
+			],
+			"AuxiliaryUnits": [
+				"AuxUnit1"
+			]
+		},
+		{
+			"ID": 5,
+			"Faction": "DesertFaction",
+			"StoneCasters": [
+				{
+					"Name": "StoneCaster1",
+					"Golems": [
+						"Golem1"
 					]
 				},
 				{
@@ -31,7 +53,11 @@
 					]
 				}
 			],
-			"AuxiliaryUnits": []
+			"AuxiliaryUnits": [
+				"AuxUnit1",
+				"AuxUnit2",
+				"AuxUnit3"
+			]
 		}
 	]
 }
