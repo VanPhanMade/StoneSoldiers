@@ -1,10 +1,10 @@
 # Security Policy
 
 ## Supported Versions
+> [!IMPORTANT]
+> Older versions will be kept for early playtesters and supports, however, this graph marks what versions are updated for bug fixes. 
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
+Example:
 | Version | Supported          |
 | ------- | ------------------ |
 | 5.1.x   | :white_check_mark: |
@@ -14,8 +14,4 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Currently not setup yet, the discussions page will become a location where community admins can report bugs to be fixed for the lastest version of the game
