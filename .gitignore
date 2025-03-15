@@ -62,8 +62,13 @@ Build/
 Build/*/**
 !Build/*/PakBlacklist*.txt
 
+!Builds/*/
+Builds/*/**
+!Builds/*/PakBlacklist*.txt
+
 # Don't ignore icon files in Build
 !Build/**/*.ico
+!Builds/**/*.ico
 
 # Built data for maps
 *_BuiltData.uasset
