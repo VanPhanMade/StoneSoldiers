@@ -62,8 +62,13 @@ Build/
 Build/*/**
 !Build/*/PakBlacklist*.txt
 
+!Builds/*/
+Builds/*/**
+!Builds/*/PakBlacklist*.txt
+
 # Don't ignore icon files in Build
 !Build/**/*.ico
+!Builds/**/*.ico
 
 # Built data for maps
 *_BuiltData.uasset
@@ -81,3 +86,11 @@ Plugins/**/Intermediate/
 # Cache files for the editor to use
 DerivedDataCache/*
 .vscode.zip
+
+# JetBrains Rider
+.idea/
+*.iml
+out/
+*.ipr
+*.iws
+*.sln.DotSettings.user
