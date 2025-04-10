@@ -14,15 +14,25 @@ class STONESOLDIERS_API AStoneSoldiersPlayerController : public APlayerControlle
 {
 	GENERATED_BODY()
 	
-public: 
+public:
+	virtual void OnPlayerStateChangedCallback(FString NewStateName);
+	virtual bool SwapToGameplayInteractionOptionsUI();
+	virtual bool SwapToDefaultInGameUI();
+	
+	void AddControlledUnit(class ABaseUnit* Unit);
+	void SetControlledUnits(const TArray<class ABaseUnit*>& Units);
 	
 protected: 
 	virtual void BeginPlay() override;
- 
-private:
+
 	UPROPERTY(EditAnywhere, Category="UI", meta=(AllowPrivateAccess="true"))
-	TSubclassOf<class UInGameHUD> InGameHUDWidget;
+	TSubclassOf<class UInGameHud_Singleplayer> InGameHUDWidget;
 
-	class UInGameHUD* InGameHUDRef;
+	UPROPERTY()
+	class UInGameHud_Singleplayer* InGameHUDRef;
 
+	TArray<class ABaseUnit*> ControlledUnits;
+	
+public:
+	FORCEINLINE const TArray<ABaseUnit*>& GetControlledUnits() const { return ControlledUnits; }
 };
