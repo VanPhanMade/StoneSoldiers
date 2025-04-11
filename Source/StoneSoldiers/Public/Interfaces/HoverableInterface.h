@@ -14,7 +14,7 @@ class STONESOLDIERS_API IHoverableInterface
 {
 	GENERATED_BODY()
 	
-	public:
-		virtual void OnHoverBegin();
-		virtual void OnHoverEnd();
+public:
+	virtual void OnHoverBegin(AActor* InstigatorActor) = 0;
+	virtual void OnHoverEnd(AActor* InstigatorActor) = 0;
 };

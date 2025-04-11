@@ -3,12 +3,3 @@
 
 #include "Interfaces/HoverableInterface.h"
 
-void IHoverableInterface::OnHoverBegin()
-{
-
-}
-
-void IHoverableInterface::OnHoverEnd()
-{
-
-}
