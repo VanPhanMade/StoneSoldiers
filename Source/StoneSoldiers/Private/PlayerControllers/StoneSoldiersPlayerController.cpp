@@ -26,6 +26,19 @@ void AStoneSoldiersPlayerController::AddControlledUnit(ABaseUnit* Unit)
     }
 }
 
+void AStoneSoldiersPlayerController::RemoveControlledUnit(class ABaseUnit* Unit)
+{
+    if (ControlledUnits.Contains(Unit))
+    {
+        ControlledUnits.Remove(Unit);
+    }
+
+    ControlledUnits.RemoveAll([](const TObjectPtr<ABaseUnit>& Unit)
+    {
+        return Unit == nullptr;
+    });
+}
+
 void AStoneSoldiersPlayerController::SetControlledUnits(const TArray<ABaseUnit*>& Units)
 {
     ControlledUnits = Units;

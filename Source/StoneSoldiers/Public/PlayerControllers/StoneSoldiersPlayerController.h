@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// ©Van Phan
 
 #pragma once
 
@@ -19,8 +19,9 @@ public:
 	virtual bool SwapToGameplayInteractionOptionsUI();
 	virtual bool SwapToDefaultInGameUI();
 	
-	void AddControlledUnit(class ABaseUnit* Unit);
-	void SetControlledUnits(const TArray<class ABaseUnit*>& Units);
+	virtual void AddControlledUnit(class ABaseUnit* Unit);
+	virtual void RemoveControlledUnit(class ABaseUnit* Unit);
+	virtual void SetControlledUnits(const TArray<class ABaseUnit*>& Units);
 	
 protected: 
 	virtual void BeginPlay() override;
@@ -34,5 +35,5 @@ protected:
 	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
 	
 public:
-	FORCEINLINE const TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
+	FORCEINLINE TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
 };
