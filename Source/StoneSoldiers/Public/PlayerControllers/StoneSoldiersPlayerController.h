@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// ©Van Phan
 
 #pragma once
 
@@ -14,15 +14,26 @@ class STONESOLDIERS_API AStoneSoldiersPlayerController : public APlayerControlle
 {
 	GENERATED_BODY()
 	
-public: 
+public:
+	virtual void OnPlayerStateChangedCallback(FString NewStateName);
+	virtual bool SwapToGameplayInteractionOptionsUI();
+	virtual bool SwapToDefaultInGameUI();
+	
+	virtual void AddControlledUnit(class ABaseUnit* Unit);
+	virtual void RemoveControlledUnit(class ABaseUnit* Unit);
+	virtual void SetControlledUnits(const TArray<class ABaseUnit*>& Units);
 	
 protected: 
 	virtual void BeginPlay() override;
- 
-private:
+
 	UPROPERTY(EditAnywhere, Category="UI", meta=(AllowPrivateAccess="true"))
-	TSubclassOf<class UInGameHUD> InGameHUDWidget;
+	TSubclassOf<class UInGameHud_Singleplayer> InGameHUDWidget;
 
-	class UInGameHUD* InGameHUDRef;
+	UPROPERTY()
+	TObjectPtr<class UInGameHud_Singleplayer> InGameHUDRef;
 
+	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
+	
+public:
+	FORCEINLINE TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
 };

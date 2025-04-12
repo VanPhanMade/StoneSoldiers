@@ -15,6 +15,6 @@ class STONESOLDIERS_API IClickableInterface
 	GENERATED_BODY()
 
 public:
-	virtual void OnLeftClick() = 0;
-	virtual void OnRightClick() = 0;
+	virtual void OnLeftClick(AActor* InstigatorActor) = 0;
+	virtual void OnRightClick(AActor* InstigatorActor) = 0;
 };
