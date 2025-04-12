@@ -2,9 +2,6 @@
 
 
 #include "PlayerControllers/StoneSoldiersPlayerController.h"
-#include "PlayerStates/StoneSoldierPlayerState.h"
-#include "Widgets/InGameHud_Singleplayer.h"
-#include "Utilities/StoneSoldiersHelperFunctions.h"
 
 void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(FString NewStateName)
 {

@@ -29,9 +29,9 @@ protected:
 	TSubclassOf<class UInGameHud_Singleplayer> InGameHUDWidget;
 
 	UPROPERTY()
-	class UInGameHud_Singleplayer* InGameHUDRef;
+	TObjectPtr<class UInGameHud_Singleplayer> InGameHUDRef;
 
-	TArray<class ABaseUnit*> ControlledUnits;
+	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
 	
 public:
 	FORCEINLINE const TArray<ABaseUnit*>& GetControlledUnits() const { return ControlledUnits; }
