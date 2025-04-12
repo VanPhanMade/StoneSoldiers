@@ -1,4 +1,4 @@
-// Copyright (c), Firelight Technologies Pty, Ltd. 2012-2024.
+// Copyright (c), Firelight Technologies Pty, Ltd. 2012-2025.
 
 #include "FMODStudioModule.h"
 #include "FMODSettings.h"
@@ -62,15 +62,15 @@ const TCHAR *FMODSystemContextNames[EFMODSystemContext::Max] = {
     TEXT("Auditioning"), TEXT("Runtime"), TEXT("Editor"),
 };
 
-void *F_CALLBACK FMODMemoryAlloc(unsigned int size, FMOD_MEMORY_TYPE type, const char *sourcestr)
+void *F_CALL FMODMemoryAlloc(unsigned int size, FMOD_MEMORY_TYPE type, const char *sourcestr)
 {
     return FMemory::Malloc(size);
 }
-void *F_CALLBACK FMODMemoryRealloc(void *ptr, unsigned int size, FMOD_MEMORY_TYPE type, const char *sourcestr)
+void *F_CALL FMODMemoryRealloc(void *ptr, unsigned int size, FMOD_MEMORY_TYPE type, const char *sourcestr)
 {
     return FMemory::Realloc(ptr, size);
 }
-void F_CALLBACK FMODMemoryFree(void *ptr, FMOD_MEMORY_TYPE type, const char *sourcestr)
+void F_CALL FMODMemoryFree(void *ptr, FMOD_MEMORY_TYPE type, const char *sourcestr)
 {
     FMemory::Free(ptr);
 }
@@ -168,7 +168,6 @@ public:
         , bUseSound(true)
         , bListenerMoved(true)
         , bAllowLiveUpdate(true)
-        , bBanksLoaded(false)
         , LowLevelLibHandle(nullptr)
         , StudioLibHandle(nullptr)
         , bMixerPaused(false)
@@ -177,6 +176,7 @@ public:
         for (int i = 0; i < EFMODSystemContext::Max; ++i)
         {
             StudioSystem[i] = nullptr;
+            bBanksLoaded[i] = false;
         }
     }
 
@@ -320,7 +320,7 @@ public:
     /** True if we allow live update */
     bool bAllowLiveUpdate;
 
-    bool bBanksLoaded;
+    bool bBanksLoaded[EFMODSystemContext::Max];
 
     /** Dynamic library */
     FString BaseLibPath;
@@ -463,7 +463,7 @@ void FFMODStudioModule::StartupModule()
     if (FParse::Param(FCommandLine::Get(), TEXT("nosound")) || FApp::IsBenchmarking() || IsRunningDedicatedServer() || IsRunningCommandlet())
     {
         bUseSound = false;
-        UE_LOG(LogFMOD, Log, TEXT("Running in nosound mode"));
+        UE_LOG(LogFMOD, Log, TEXT("Disabling FMOD Runtime."));
     }
 
     if (FParse::Param(FCommandLine::Get(), TEXT("noliveupdate")))
@@ -476,19 +476,7 @@ void FFMODStudioModule::StartupModule()
         verifyfmod(FMOD::Debug_Initialize(FMOD_DEBUG_LEVEL_WARNING, FMOD_DEBUG_MODE_CALLBACK, FMODLogCallback));
 
         const UFMODSettings &Settings = *GetDefault<UFMODSettings>();
-
         int32 size = Settings.GetMemoryPoolSize();
-
-        if (size == 0)
-        {
-#if defined(FMOD_PLATFORM_HEADER)
-            size = FMODPlatform_MemoryPoolSize();
-#elif PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_ANDROID
-            size = Settings.MemoryPoolSizes.Mobile;
-#else
-            size = Settings.MemoryPoolSizes.Desktop;
-#endif
-        }
 
         if (!GIsEditor && size > 0)
         {
@@ -702,16 +690,12 @@ void FFMODStudioModule::CreateStudioSystem(EFMODSystemContext::Type Type)
     advSettings.cbSize = sizeof(FMOD_ADVANCEDSETTINGS);
     advSettings.vol0virtualvol = Settings.Vol0VirtualLevel;
 
-    if (!Settings.SetCodecs(advSettings))
-    {
-#if defined(FMOD_PLATFORM_HEADER)
-        FMODPlatform_SetRealChannelCount(&advSettings);
-#elif PLATFORM_IOS || PLATFORM_TVOS || PLATFORM_ANDROID
-        advSettings.maxFADPCMCodecs = Settings.RealChannelCount;
-#else
-        advSettings.maxVorbisCodecs = Settings.RealChannelCount;
-#endif
-    }
+    TMap<TEnumAsByte<EFMODCodec::Type>, int32> Codecs = Settings.GetCodecs();
+    advSettings.maxXMACodecs    = Codecs.Contains(EFMODCodec::XMA)      ? Codecs[EFMODCodec::XMA]       : 0;
+    advSettings.maxVorbisCodecs = Codecs.Contains(EFMODCodec::VORBIS)   ? Codecs[EFMODCodec::VORBIS]    : 0;
+    advSettings.maxAT9Codecs    = Codecs.Contains(EFMODCodec::AT9)      ? Codecs[EFMODCodec::AT9]       : 0;
+    advSettings.maxFADPCMCodecs = Codecs.Contains(EFMODCodec::FADPCM)   ? Codecs[EFMODCodec::FADPCM]    : 0;
+    advSettings.maxOpusCodecs   = Codecs.Contains(EFMODCodec::OPUS)     ? Codecs[EFMODCodec::OPUS]      : 0;
 
     if (Type == EFMODSystemContext::Runtime)
     {
@@ -809,20 +793,8 @@ void FFMODStudioModule::UnloadBanks(EFMODSystemContext::Type Type)
 {
     if (StudioSystem[Type])
     {
-        int bankCount;
-        verifyfmod(StudioSystem[Type]->getBankCount(&bankCount));
-        if (bankCount > 0)
-        {
-            TArray<FMOD::Studio::Bank*> bankArray;
-
-            bankArray.SetNumUninitialized(bankCount, false);
-            verifyfmod(StudioSystem[Type]->getBankList(bankArray.GetData(), bankCount, &bankCount));
-
-            for (int i = 0; i < bankCount; i++)
-            {
-                verifyfmod(bankArray[i]->unload());
-            }
-        }
+        verifyfmod(StudioSystem[Type]->unloadAll());
+        bBanksLoaded[Type] = false;
     }
 }
 
@@ -1300,7 +1272,14 @@ struct NamedBankEntry
 
 bool FFMODStudioModule::AreBanksLoaded()
 {
-    return bBanksLoaded;
+    for (int i = 0; i < EFMODSystemContext::Max; ++i)
+    {
+        if (bBanksLoaded[i])
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool FFMODStudioModule::SetLocale(const FString& LocaleName)
@@ -1488,22 +1467,37 @@ void FFMODStudioModule::LoadBanks(EFMODSystemContext::Type Type)
         }
     }
 
-    bBanksLoaded = true;
+    bBanksLoaded[Type] = true;
 }
 
 #if WITH_EDITOR
 void FFMODStudioModule::ReloadBanks()
 {
     UE_LOG(LogFMOD, Verbose, TEXT("Refreshing auditioning system"));
-
-    StopAuditioningInstance();
-    UnloadBanks(EFMODSystemContext::Auditioning);
-    DestroyStudioSystem(EFMODSystemContext::Editor);
+    bool bReloadAuditioningBanks = 0;
+    bool bReloadEditorBanks = 0;
+    if (bBanksLoaded[EFMODSystemContext::Auditioning])
+    {
+        StopAuditioningInstance();
+        UnloadBanks(EFMODSystemContext::Auditioning);
+        bReloadAuditioningBanks = true;
+    }
+    if (bBanksLoaded[EFMODSystemContext::Editor])
+    {
+        UnloadBanks(EFMODSystemContext::Editor);
+        bReloadEditorBanks = true;
+    }
 
     AssetTable.Load();
 
-    LoadBanks(EFMODSystemContext::Auditioning);
-    CreateStudioSystem(EFMODSystemContext::Editor);
+    if (bReloadAuditioningBanks)
+    {
+        LoadBanks(EFMODSystemContext::Auditioning);
+    }
+    if (bReloadEditorBanks)
+    {
+        LoadBanks(EFMODSystemContext::Editor);
+    }
 }
 
 void FFMODStudioModule::LoadEditorBanks()

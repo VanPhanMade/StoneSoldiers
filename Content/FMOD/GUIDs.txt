@@ -1,0 +1,11 @@
+{9e005fb7-6a9e-4d29-bd91-4f33f3544560} bank:/Master
+{061d7f63-1be5-016b-3bd8-c5cd02a743f8} bank:/Master.strings
+{aac8dd77-7432-4467-a206-757a96fd0fd7} bank:/Music
+{e8e0d8fe-9db1-4f67-8ab1-64e19fbd21c6} bank:/SFX
+{eef38f07-a20b-442f-bd55-eec6265588a0} bus:/
+{061d6895-0e31-4f5f-904e-0f4afe637d4a} bus:/Master
+{0f325bdc-14db-45a3-94f4-be0726bc2371} bus:/Master/Dialogue
+{6226d003-5747-4cc3-8769-1e7134e6af16} bus:/Master/Music
+{900889cc-bd19-483a-99e2-6f09ac5bdb81} bus:/Master/SFX
+{517f3cd3-b281-4956-87f2-50bf18aed663} bus:/Reverb
+{1dcebfe9-5eda-49cc-a02a-02f9f973ebe8} event:/BackgroundTracks/MainMenuBackgroundMusic
