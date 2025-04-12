@@ -34,5 +34,5 @@ protected:
 	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
 	
 public:
-	FORCEINLINE const TArray<ABaseUnit*>& GetControlledUnits() const { return ControlledUnits; }
+	FORCEINLINE const TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
 };
