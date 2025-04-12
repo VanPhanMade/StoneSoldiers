@@ -1,4 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/*
+© 2025 Crossing Worlds Entertainment, LLC. All Rights Reserved.
+*/
 
 
 #include "PlayerControllers/StoneSoldiersPlayerController.h"
