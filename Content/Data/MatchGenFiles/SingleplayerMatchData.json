@@ -28,11 +28,15 @@
 					"Name": "StoneCaster2",
 					"Golems": [
 						"Golem1",
-						"Golem2"
+						"Golem2",
+						"Golem3"
 					]
 				}
 			],
-			"AuxiliaryUnits": []
+			"AuxiliaryUnits": [
+				"AuxUnit1",
+				"AuxUnit2"
+			]
 		}
 	]
 }
