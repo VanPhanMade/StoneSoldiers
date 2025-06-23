@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class StoneSoldiers : ModuleRules
+public class TileGenerator : ModuleRules
 {
-    public StoneSoldiers(ReadOnlyTargetRules Target) : base(Target)
+    public TileGenerator(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -15,15 +15,8 @@ public class StoneSoldiers : ModuleRules
             "Engine", 
             "InputCore", 
             "EnhancedInput", 
-            "UMG", 
-            "FMODStudio",
-            "OnlineSubsystem", 
-            "OnlineSubsystemUtils", 
-            "Networking", 
-            "Sockets", 
-            "AdvancedSessions", 
-            "AdvancedSteamSessions",
-            "OnlineSubsystemSteam"
+            "UMG",
+			"TileGenerator"
         });
 
         PrivateDependencyModuleNames.AddRange(new string[] {
@@ -31,8 +24,7 @@ public class StoneSoldiers : ModuleRules
             "SlateCore",
             "OnlineSubsystem",
             "OnlineSubsystemUtils",
-            "Json", // Add this here
-			"TileGenerator"
+            "Json"// Add this here
         });
 
         // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file 

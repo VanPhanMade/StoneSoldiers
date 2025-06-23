@@ -13,6 +13,14 @@
 				"Engine",
 				"AdvancedSessions"
 			]
+		},
+		{
+			"Name": "TileGenerator",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
