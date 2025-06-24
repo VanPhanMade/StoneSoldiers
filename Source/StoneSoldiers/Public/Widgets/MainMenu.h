@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "FMODEvent.h"
 #include "MainMenu.generated.h"
 
 /**
@@ -24,12 +23,6 @@ public:
 
 	UPROPERTY( meta = (BindWidget))
 	class UWidgetSwitcher* WidgetSwitcher;
-
-	UPROPERTY(EditAnywhere)
-	UFMODEvent* ButtonPressEvent;
-
-	UPROPERTY(EditAnywhere)
-	UFMODEvent* BackButtonEvent;
  
 protected: 
 	virtual bool Initialize() override;

@@ -14,8 +14,6 @@
 #include "Widgets/Components/LeaderboardUI.h"
 #include "Widgets/Components/ReplaysUI.h"
 
-#include "FMODBlueprintStatics.h"
-
 bool UMainMenu::Initialize()
 {
     if(!Super::Initialize()) return false;
@@ -71,7 +69,6 @@ void UMainMenu::OpenCampaignOptions()
     {
         CampaignOptions->SetVisibility(ESlateVisibility::Visible);
         BattleOptions->SetVisibility(ESlateVisibility::Collapsed);
-        UFMODBlueprintStatics::PlayEvent2D(this, ButtonPressEvent, true);
     }
 }
 
@@ -81,7 +78,6 @@ void UMainMenu::OpenBattlesOptions()
     {
         CampaignOptions->SetVisibility(ESlateVisibility::Collapsed);
         BattleOptions->SetVisibility(ESlateVisibility::Visible);
-        UFMODBlueprintStatics::PlayEvent2D(this, ButtonPressEvent, true);
     }
 }
 
