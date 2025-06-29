@@ -19,10 +19,7 @@
 				{
 					"Name": "StoneCaster1",
 					"Golems": [
-						"Golem1",
-						"Golem2",
-						"Golem3",
-						"Golem4"
+						"Golem1"
 					]
 				},
 				{

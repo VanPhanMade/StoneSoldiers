@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "PlayerStates/StoneSoldierPlayerState.h"
 #include "StoneSoldiersPlayerController.generated.h"
 
 /**
@@ -15,7 +16,7 @@ class STONESOLDIERS_API AStoneSoldiersPlayerController : public APlayerControlle
 	GENERATED_BODY()
 	
 public:
-	virtual void OnPlayerStateChangedCallback(FString NewStateName);
+	virtual void OnPlayerStateChangedCallback(EPlayerState NewStateName);
 	virtual bool SwapToGameplayInteractionOptionsUI();
 	virtual bool SwapToDefaultInGameUI();
 	
