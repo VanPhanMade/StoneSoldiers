@@ -5,9 +5,9 @@
 
 #include "PlayerControllers/StoneSoldiersPlayerController.h"
 
-void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(FString NewStateName)
+void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(EPlayerState NewStateName)
 {
-    
+        
 }
 
 bool AStoneSoldiersPlayerController::SwapToGameplayInteractionOptionsUI()
