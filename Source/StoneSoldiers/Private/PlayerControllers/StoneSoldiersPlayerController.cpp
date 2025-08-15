@@ -7,7 +7,7 @@
 
 void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(EPlayerState NewStateName)
 {
-        
+    
 }
 
 bool AStoneSoldiersPlayerController::SwapToGameplayInteractionOptionsUI()
