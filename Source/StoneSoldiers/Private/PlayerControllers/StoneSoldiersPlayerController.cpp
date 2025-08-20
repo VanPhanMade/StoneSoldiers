@@ -4,8 +4,16 @@
 
 
 #include "PlayerControllers/StoneSoldiersPlayerController.h"
+#include "Actors/BaseUnit.h"
+#include "Pawns/PlayerPawn.h"
 
-void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(FString NewStateName)
+
+void AStoneSoldiersPlayerController::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void AStoneSoldiersPlayerController::OnPlayerStateChangedCallback(EPlayerState NewStateName)
 {
     
 }
@@ -46,7 +54,6 @@ void AStoneSoldiersPlayerController::SetControlledUnits(const TArray<ABaseUnit*>
     ControlledUnits = Units;
 }
 
-void AStoneSoldiersPlayerController::BeginPlay()
-{   
-    Super::BeginPlay();
-}
+
+
+
