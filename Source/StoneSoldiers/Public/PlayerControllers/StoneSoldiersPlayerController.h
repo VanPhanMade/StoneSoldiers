@@ -34,7 +34,16 @@ protected:
 	TObjectPtr<class UInGameHud_Singleplayer> InGameHUDRef;
 
 	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
+
 	
 public:
 	FORCEINLINE TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
+
+	//I added these because I don't like having to cast multiple times, just let me do one cast and call the damn function
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE EPlayerState GetCurrentState() const { return GetPlayerState<AStoneSoldierPlayerState>()->GetCurrentState(); }
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void SetCurrentState(EPlayerState NewState) const { GetPlayerState<AStoneSoldierPlayerState>()->SetState(NewState); }
+
 };
