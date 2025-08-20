@@ -32,6 +32,7 @@ public class StoneSoldiers : ModuleRules
             "OnlineSubsystem",
             "OnlineSubsystemUtils",
             "Json", // Add this here
+            "JsonUtilities",
 			"TileGenerator"
         });
 

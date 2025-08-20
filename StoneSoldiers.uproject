@@ -42,6 +42,14 @@
 		{
 			"Name": "VaRest",
 			"Enabled": false
+		},
+		{
+			"Name": "ScriptableToolsFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "ScriptableToolsEditorMode",
+			"Enabled": true
 		}
 	]
 }
