@@ -13,6 +13,14 @@
 				"Engine",
 				"AdvancedSessions"
 			]
+		},
+		{
+			"Name": "TileGenerator",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
@@ -34,6 +42,14 @@
 		{
 			"Name": "VaRest",
 			"Enabled": false
+		},
+		{
+			"Name": "ScriptableToolsFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "ScriptableToolsEditorMode",
+			"Enabled": true
 		}
 	]
 }

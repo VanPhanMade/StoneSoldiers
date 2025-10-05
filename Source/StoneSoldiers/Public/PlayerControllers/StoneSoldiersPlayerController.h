@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "PlayerStates/StoneSoldierPlayerState.h"
 #include "StoneSoldiersPlayerController.generated.h"
 
 /**
@@ -15,7 +16,7 @@ class STONESOLDIERS_API AStoneSoldiersPlayerController : public APlayerControlle
 	GENERATED_BODY()
 	
 public:
-	virtual void OnPlayerStateChangedCallback(FString NewStateName);
+	virtual void OnPlayerStateChangedCallback(EPlayerState NewStateName);
 	virtual bool SwapToGameplayInteractionOptionsUI();
 	virtual bool SwapToDefaultInGameUI();
 	
@@ -33,7 +34,16 @@ protected:
 	TObjectPtr<class UInGameHud_Singleplayer> InGameHUDRef;
 
 	TArray<TObjectPtr<class ABaseUnit>> ControlledUnits;
+
 	
 public:
 	FORCEINLINE TArray<TObjectPtr<class ABaseUnit>> GetControlledUnits() const { return ControlledUnits; }
+
+	//I added these because I don't like having to cast multiple times, just let me do one cast and call the damn function
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE EPlayerState GetCurrentState() const { return GetPlayerState<AStoneSoldierPlayerState>()->GetCurrentState(); }
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE void SetCurrentState(EPlayerState NewState) const { GetPlayerState<AStoneSoldierPlayerState>()->SetState(NewState); }
+
 };
